@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SimpleAppDemo</string>
+    <string name="title_activity_post">PostActivity</string>
+
+    <string name="list_loading">Loading your post, please wait</string>
+    <string name="list_error">Your post got lost in a maze, please try again</string>
+</resources>

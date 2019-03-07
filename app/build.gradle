@@ -1,0 +1,72 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.quaksire.simpleappdemo"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "BASE_URL", BASE_URL
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation(
+            project(':app.model'),
+            project(':app.network'),
+
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            "com.android.support:appcompat-v7:$support",
+            'com.android.support.constraint:constraint-layout:1.1.3',
+            "com.android.support:support-v4:$support",
+            "com.android.support:recyclerview-v7:$support",
+            "com.android.support:design:$support",
+            "io.reactivex:rxandroid:${rxAndroidVersion}",
+            "com.google.dagger:dagger:${daggerVersion}",
+
+
+            "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
+            "com.squareup.okio:okio:${okioVersion}",
+            "com.squareup.okhttp:okhttp:${okHttpVersion}",
+    )
+
+    testImplementation (
+            "junit:junit:${jUnitVersion}",
+
+            "org.powermock:powermock-api-mockito:${powerMockitoVersion}",
+            "org.powermock:powermock-module-junit4:${powerMockitoVersion}",
+            "org.powermock:powermock-module-junit4-rule:${powerMockitoVersion}",
+            "org.powermock:powermock-module-junit4-rule-agent:${powerMockitoVersion}",
+
+            "com.squareup.retrofit2:retrofit-mock:${retrofitVersion}"
+    )
+
+    androidTestImplementation('com.squareup.okhttp3:mockwebserver:3.3.0')
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:${expressoVersion}")
+    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:${expressoVersion}") {
+        exclude module: 'support-annotations'
+        exclude module: 'support-v4'
+        exclude module: 'support-v13'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'design'
+    }
+
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+
+    kapt "com.google.dagger:dagger-compiler:${daggerVersion}"
+}

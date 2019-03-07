@@ -1,0 +1,30 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation (
+            project(':app.model'),
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
+            "com.squareup.okio:okio:${okioVersion}",
+            "com.squareup.okhttp:okhttp:${okHttpVersion}" ,
+
+            "com.google.dagger:dagger:${daggerVersion}"
+    )
+
+    testImplementation (
+            "junit:junit:${jUnitVersion}",
+
+            "org.powermock:powermock-api-mockito:${powerMockitoVersion}",
+            "org.powermock:powermock-module-junit4:${powerMockitoVersion}",
+            "org.powermock:powermock-module-junit4-rule:${powerMockitoVersion}",
+            "org.powermock:powermock-module-junit4-rule-agent:${powerMockitoVersion}",
+
+            "com.squareup.retrofit2:retrofit-mock:${retrofitVersion}"
+    )
+
+    kapt "com.google.dagger:dagger-compiler:${daggerVersion}"
+}
